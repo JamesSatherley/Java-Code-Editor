@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
@@ -22,6 +23,11 @@ import java.util.Scanner;
 
 import javax.swing.Action;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTabbedPane;
+import java.awt.Panel;
+import java.awt.TextArea;
 
 public class Main extends JFrame {
 
@@ -46,11 +52,13 @@ public class Main extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	JTextArea txtrTextHere;
+	private final Action action_4 = new SwingAction_4();
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -73,10 +81,11 @@ public class Main extends JFrame {
 		mntmNewMenuItem_2.setAction(action_2);
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenu mnNewMenu_1 = new JMenu("Search");
+		JMenu mnNewMenu_1 = new JMenu("Tools");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("???");
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Search");
+		mntmNewMenuItem_4.setAction(action_4);
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JMenu mnNewMenu_2 = new JMenu("View");
@@ -203,6 +212,25 @@ public class Main extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
+		}
+	}
+	private class SwingAction_4 extends AbstractAction {
+		public SwingAction_4() {
+			putValue(NAME, "Search");
+			putValue(SHORT_DESCRIPTION, "Search box");
+		}
+		public void actionPerformed(ActionEvent e) {
+			String searchBox = (String)JOptionPane.showInputDialog("Search Text:");
+			final int l1 = txtrTextHere.getText().indexOf(searchBox);
+			final int l2 = searchBox.length();
+
+			if (l1 == -1) {
+			    JOptionPane.showMessageDialog(null, "Search Value Not Found");
+			} else {
+				txtrTextHere.select(l1, l2+l1);
+			}
+			
+			
 		}
 	}
 }
