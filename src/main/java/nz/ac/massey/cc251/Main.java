@@ -51,6 +51,7 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	JTextArea txtrTextHere;
+	private final Action action_4 = new SwingAction_4();
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -108,6 +109,7 @@ public class Main extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_9);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("T&D");
+		mntmNewMenuItem_6.setAction(action_4);
 		mnNewMenu_4.add(mntmNewMenuItem_6);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -203,6 +205,14 @@ public class Main extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
+		}
+	}
+	private class SwingAction_4 extends AbstractAction {
+		public SwingAction_4() {
+			putValue(NAME, "T&D");
+			putValue(SHORT_DESCRIPTION, "Puts time and date at the start of your document");
+		}
+		public void actionPerformed(ActionEvent e) {
 		}
 	}
 }
