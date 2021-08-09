@@ -13,7 +13,13 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuItem;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 import javax.swing.Action;
+import javax.swing.JFileChooser;
 
 public class Main extends JFrame {
 
@@ -42,6 +48,7 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	JTextArea txtrTextHere;
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -105,8 +112,7 @@ public class Main extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JTextArea txtrTextHere = new JTextArea();
-		txtrTextHere.setText("Text here!");
+		txtrTextHere = new JTextArea();
 		contentPane.add(txtrTextHere, BorderLayout.CENTER);
 		
 		JScrollBar scrollBar = new JScrollBar();
@@ -128,6 +134,35 @@ public class Main extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Opens txt in editor");
 		}
 		public void actionPerformed(ActionEvent e) {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File("."));
+			
+			int response = fileChooser.showOpenDialog(null);
+			
+			if (response == JFileChooser.APPROVE_OPTION) {
+				File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+				Scanner fileIn = null;
+				
+				try {
+					fileIn = new Scanner(file);
+					if(file.isFile()) {
+						while(fileIn.hasNextLine()) {
+							String line = fileIn.nextLine()+"\n";
+							txtrTextHere.append(line);
+							
+						}
+					}
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				finally {
+					fileIn.close();
+				}
+				
+				
+			}
+			
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
@@ -136,6 +171,27 @@ public class Main extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Saves as txt");
 		}
 		public void actionPerformed(ActionEvent e) {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File("."));
+			
+			int response = fileChooser.showSaveDialog(null);
+			
+			if (response == JFileChooser.APPROVE_OPTION) {
+				File file;
+				PrintWriter fileOut = null;
+				
+				file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+				try {
+					fileOut = new PrintWriter(file);
+					fileOut.println(txtrTextHere.getText());
+				}catch (FileNotFoundException el) {
+					el.printStackTrace();
+					
+				}
+				finally {
+					fileOut.close();
+				}
+			}
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
