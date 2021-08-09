@@ -1,6 +1,7 @@
 package nz.ac.massey.cc251;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -197,9 +199,10 @@ public class Main extends JFrame {
 	private class SwingAction_3 extends AbstractAction {
 		public SwingAction_3() {
 			putValue(NAME, "About");
-			putValue(SHORT_DESCRIPTION, "Opens about");
+			putValue(SHORT_DESCRIPTION, "Opens information about Devlopers");
 		}
 		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
 		}
 	}
 }
