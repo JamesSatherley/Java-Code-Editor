@@ -1,4 +1,4 @@
-package nz.ac.massey.cc251;
+package nz.ac.massey;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,19 +76,23 @@ public class Window extends JFrame implements ActionListener {
         frame.show();
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "New":
                 Window window = new Window();
                 break;
             case "Open":
-                //TODO
+                Open open = new Open();
+                textArea.append(open.Open());
                 break;
             case "Save":
-                //TODO
+                Save save = new Save();
+                save.Save(textArea.getText());
                 break;
             case "Search":
-                //TODO
+                Search search = new Search();
+                textArea = search.Search(textArea);
                 break;
             case "???":
                 //TODO
@@ -115,7 +119,7 @@ public class Window extends JFrame implements ActionListener {
                 System.out.println("Default output in switch; Error!! Somehow no item was selected. @ line 114");
         }
     }
-    
+
     public static void main(String args[])
     {
         Window window = new Window();

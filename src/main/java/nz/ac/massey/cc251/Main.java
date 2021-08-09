@@ -59,6 +59,7 @@ public class Main extends JFrame {
 	 */
 	JTextArea txtrTextHere;
 	private final Action action_4 = new SwingAction_4();
+	private final Action action_5 = new SwingAction_5();
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -117,7 +118,7 @@ public class Main extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_9);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("T&D");
-		mntmNewMenuItem_6.setAction(action_4);
+		mntmNewMenuItem_6.setAction(action_5);
 		mnNewMenu_4.add(mntmNewMenuItem_6);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -217,12 +218,6 @@ public class Main extends JFrame {
 	}
 	private class SwingAction_4 extends AbstractAction {
 		public SwingAction_4() {
-
-			putValue(NAME, "T&D");
-			putValue(SHORT_DESCRIPTION, "Puts time and date at the start of your document");
-		}
-		public void actionPerformed(ActionEvent e) {
-
 			putValue(NAME, "Search");
 			putValue(SHORT_DESCRIPTION, "Search box");
 		}
@@ -236,6 +231,14 @@ public class Main extends JFrame {
 			} else {
 				txtrTextHere.select(l1, l2+l1);
 			}
+		}
+	}
+	private class SwingAction_5 extends AbstractAction {
+		public SwingAction_5() {
+			putValue(NAME, "T&D");
+			putValue(SHORT_DESCRIPTION, "Puts time and date at the start of your document");
+		}
+		public void actionPerformed(ActionEvent e) {
 		}
 	}
 }
