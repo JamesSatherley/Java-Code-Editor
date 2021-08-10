@@ -8,6 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import nz.ac.massey.Open;
+import nz.ac.massey.Save;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JScrollBar;
@@ -147,35 +151,7 @@ public class Main extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Opens txt in editor");
 		}
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fileChooser = new JFileChooser();
-			fileChooser.setCurrentDirectory(new File("."));
-			
-			int response = fileChooser.showOpenDialog(null);
-			
-			if (response == JFileChooser.APPROVE_OPTION) {
-				File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-				Scanner fileIn = null;
-				
-				try {
-					fileIn = new Scanner(file);
-					if(file.isFile()) {
-						while(fileIn.hasNextLine()) {
-							String line = fileIn.nextLine()+"\n";
-							txtrTextHere.append(line);
-							
-						}
-					}
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				finally {
-					fileIn.close();
-				}
-				
-				
-			}
-			
+			Open openPane = new Open(txtrTextHere);
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
@@ -184,27 +160,10 @@ public class Main extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Saves as txt");
 		}
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fileChooser = new JFileChooser();
-			fileChooser.setCurrentDirectory(new File("."));
+			Save savePanel = new Save(txtrTextHere.getText());
 			
-			int response = fileChooser.showSaveDialog(null);
 			
-			if (response == JFileChooser.APPROVE_OPTION) {
-				File file;
-				PrintWriter fileOut = null;
-				
-				file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-				try {
-					fileOut = new PrintWriter(file);
-					fileOut.println(txtrTextHere.getText());
-				}catch (FileNotFoundException el) {
-					el.printStackTrace();
-					
-				}
-				finally {
-					fileOut.close();
-				}
-			}
+
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
