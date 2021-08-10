@@ -1,19 +1,14 @@
 package nz.ac.massey;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class Save {
-    
-	public Save(String s) {
+    void SaveFunction(String s) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", ".txt");
-        fileChooser.setFileFilter(filter);
 
         int response = fileChooser.showSaveDialog(null);
 

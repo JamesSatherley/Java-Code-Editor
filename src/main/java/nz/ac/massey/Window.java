@@ -84,15 +84,15 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Open":
                 Open open = new Open();
-                textArea.append(open.Open());
+                textArea.append(open.OpenFunction());
                 break;
             case "Save":
                 Save save = new Save();
-                save.Save(textArea.getText());
+                save.SaveFunction(textArea.getText());
                 break;
             case "Search":
                 Search search = new Search();
-                textArea = search.Search(textArea);
+                textArea = search.SearchFunction(textArea);
                 break;
             case "???":
                 //TODO
