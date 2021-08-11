@@ -13,7 +13,7 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
     private JFrame frame;
-    private TextArea textArea;
+    private RSyntaxTextArea textArea;
 
     Window() throws BadLocationException {
         String fileName = "Unnamed";
@@ -21,6 +21,7 @@ public class Window extends JFrame implements ActionListener {
         JMenuBar menuBar = new JMenuBar();
         RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
+        textArea.setText("");
 
         textArea.setCaretColor(Color.white);
         textArea.setBackground(Color.darkGray);
@@ -94,7 +95,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Open":
                 Open open = new Open();
-                if (textArea.getText().equals("")) {
+                if (textArea == null) {
                     textArea.setText(open.OpenFunction());
                 } else {
                     Window windowNew = null;
@@ -108,7 +109,11 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                save.SaveFunction(textArea.getText());
+                if (textArea == null) {
+                    save.SaveFunction("");
+                } else {
+                    save.SaveFunction(textArea.getText());
+                }
                 break;
             case "Search":
                 Search search = new Search();
