@@ -17,9 +17,9 @@ public class Window extends JFrame implements ActionListener {
 
     Window() throws BadLocationException {
         String fileName = "Unnamed";
-        JFrame frame = new JFrame("J&J Pad | " + fileName);
+        frame = new JFrame("J&J Pad | " + fileName);
         JMenuBar menuBar = new JMenuBar();
-        RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
+        textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
         textArea.setText("");
 
@@ -95,7 +95,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Open":
                 Open open = new Open();
-                if (textArea == null) {
+                if (textArea.getText().trim().equals("")) {
                     textArea.setText(open.OpenFunction());
                 } else {
                     Window windowNew = null;
@@ -109,7 +109,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                if (textArea == null) {
+                if (textArea.getText().trim().equals("")) {
                     save.SaveFunction("");
                 } else {
                     save.SaveFunction(textArea.getText());
