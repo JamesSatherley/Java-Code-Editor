@@ -1,23 +1,32 @@
 package nz.ac.massey;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.time.LocalDateTime;
+
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
-    private String name = "JPad";
     private JFrame frame;
+    private TextArea textArea;
 
-    private JMenuBar menuBar;
-    private JTextArea textArea;
-    private JTextArea lines;
-
-    Window() {
+    Window() throws BadLocationException {
         String fileName = "Unnamed";
-        frame = new JFrame(fileName + " | " + name);
-        menuBar = new JMenuBar();
-        textArea = new JTextArea();
+        JFrame frame = new JFrame("J&J Pad | " + fileName);
+        JMenuBar menuBar = new JMenuBar();
+        RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
+        RTextScrollPane scrollPane = new RTextScrollPane(textArea);
+
+        textArea.setCaretColor(Color.white);
+        textArea.setBackground(Color.darkGray);
+        textArea.setForeground(Color.lightGray);
+        textArea.setSelectionColor(Color.black);
+        textArea.setCurrentLineHighlightColor(Color.black);
 
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuNew = new JMenuItem("New");
@@ -53,7 +62,6 @@ public class Window extends JFrame implements ActionListener {
         manageMenu.add(manageMenuCopy);
         manageMenu.add(manageMenuPaste);
         manageMenu.add(manageMenuTimeDate);
-
         JMenu helpMenu = new JMenu("Help");
         JMenuItem helpMenuCloseAll = new JMenuItem("Close All");
         JMenuItem helpMenuAbout = new JMenuItem("About");
@@ -69,10 +77,8 @@ public class Window extends JFrame implements ActionListener {
         menuBar.add(helpMenu);
 
         frame.setJMenuBar(menuBar);
-        frame.add(textArea);
-        JScrollPane scrollBar = new JScrollPane(textArea);
-        frame.add(scrollBar);
-        frame.setSize(500, 500);
+        frame.add(scrollPane);
+        frame.setSize(1000, 800);
         frame.show();
     }
 
@@ -80,11 +86,25 @@ public class Window extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "New":
-                Window window = new Window();
+                try {
+                    Window window = new Window();
+                } catch (BadLocationException badLocationException) {
+                    badLocationException.printStackTrace();
+                }
                 break;
             case "Open":
                 Open open = new Open();
-                textArea.append(open.OpenFunction());
+                if (textArea.getText().equals("")) {
+                    textArea.setText(open.OpenFunction());
+                } else {
+                    Window windowNew = null;
+                    try {
+                        windowNew = new Window();
+                    } catch (BadLocationException badLocationException) {
+                        badLocationException.printStackTrace();
+                    }
+                    windowNew.textArea.setText(open.OpenFunction());
+                }
                 break;
             case "Save":
                 Save save = new Save();
@@ -107,10 +127,10 @@ public class Window extends JFrame implements ActionListener {
                 //TODO
                 break;
             case "Insert Time and Date":
-                //TODO
+                textArea.setText(LocalDateTime.now()+ "\n" + textArea.getText());
                 break;
             case "Close All":
-                //TODO
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 break;
             case "About":
                 JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
@@ -120,8 +140,7 @@ public class Window extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws BadLocationException {
         Window window = new Window();
     }
 }

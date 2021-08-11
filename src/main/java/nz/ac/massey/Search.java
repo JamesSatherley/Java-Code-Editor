@@ -1,9 +1,10 @@
 package nz.ac.massey;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Search {
-    JTextArea SearchFunction(JTextArea textBox) {
+    TextArea SearchFunction(TextArea textBox) {
         String searchBox = (String)JOptionPane.showInputDialog("Search Text:");
         final int l1 = textBox.getText().indexOf(searchBox);
         final int l2 = searchBox.length();
