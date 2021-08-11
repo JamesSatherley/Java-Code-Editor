@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class Save {
-    void SaveFunction(String s) {
+    void SaveFunction(String s, JFrame frame) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
 
@@ -25,6 +25,7 @@ public class Save {
 
             } finally {
                 fileOut.close();
+                frame.setTitle("J&J Pad | " + file.getName());
             }
         }
     }

@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Open {
-    String OpenFunction() {
+    String OpenFunction(JFrame frame) {
         String output = "";
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
@@ -35,6 +35,7 @@ public class Open {
                 e1.printStackTrace();
             } finally {
                 fileIn.close();
+                frame.setTitle("J&J Pad | " + file.getName());
             }
         }
         return output;

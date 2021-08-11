@@ -96,7 +96,7 @@ public class Window extends JFrame implements ActionListener {
             case "Open":
                 Open open = new Open();
                 if (textArea.getText().trim().equals("")) {
-                    textArea.setText(open.OpenFunction());
+                    textArea.setText(open.OpenFunction(frame));
                 } else {
                     Window windowNew = null;
                     try {
@@ -104,15 +104,15 @@ public class Window extends JFrame implements ActionListener {
                     } catch (BadLocationException badLocationException) {
                         badLocationException.printStackTrace();
                     }
-                    windowNew.textArea.setText(open.OpenFunction());
+                    windowNew.textArea.setText(open.OpenFunction(frame));
                 }
                 break;
             case "Save":
                 Save save = new Save();
                 if (textArea.getText().trim().equals("")) {
-                    save.SaveFunction("");
+                    save.SaveFunction("", frame);
                 } else {
-                    save.SaveFunction(textArea.getText());
+                    save.SaveFunction(textArea.getText(), frame);
                 }
                 break;
             case "Search":
