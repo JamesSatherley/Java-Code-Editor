@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.time.LocalDateTime;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
@@ -17,17 +18,24 @@ public class Window extends JFrame implements ActionListener {
 
     Window() throws BadLocationException {
         String fileName = "Unnamed";
-        frame = new JFrame("J&J Pad | " + fileName);
+        JFrame frame = new JFrame("J&J Pad | " + fileName);
         JMenuBar menuBar = new JMenuBar();
-        textArea = new RSyntaxTextArea(30, 60);
+        RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
         textArea.setText("");
 
-        textArea.setCaretColor(Color.white);
-        textArea.setBackground(Color.darkGray);
-        textArea.setForeground(Color.lightGray);
-        textArea.setSelectionColor(Color.black);
-        textArea.setCurrentLineHighlightColor(Color.black);
+        Config config = new Config();
+        config.getPropValues();
+        config.convertToVariables();
+
+        textArea.setCaretColor(config.Carot);
+        textArea.setBackground(config.Background);
+        textArea.setForeground(config.Foreground);
+        textArea.setSelectionColor(config.Highlight);
+        textArea.setCurrentLineHighlightColor(config.Line);
+        scrollPane.getGutter().setBackground(config.GutterBackground);
+        scrollPane.getGutter().setForeground(config.GutterForeground);
 
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuNew = new JMenuItem("New");
