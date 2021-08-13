@@ -1,10 +1,13 @@
 package nz.ac.massey;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
@@ -16,9 +19,10 @@ public class Window extends JFrame implements ActionListener {
     private RSyntaxTextArea textArea;
 
     @SuppressWarnings("deprecation")
-	Window() throws BadLocationException {
+	Window() throws BadLocationException, IOException {
         String fileName = "Unnamed";
         JFrame frame = new JFrame("J&J Pad | " + fileName);
+        frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
         RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
@@ -98,8 +102,8 @@ public class Window extends JFrame implements ActionListener {
             case "New":
                 try {
                     Window window = new Window();
-                } catch (BadLocationException badLocationException) {
-                    badLocationException.printStackTrace();
+                } catch (BadLocationException | IOException exception) {
+                	exception.printStackTrace();
                 }
                 break;
             case "Open":
@@ -110,8 +114,8 @@ public class Window extends JFrame implements ActionListener {
                     Window windowNew = null;
                     try {
                         windowNew = new Window();
-                    } catch (BadLocationException badLocationException) {
-                        badLocationException.printStackTrace();
+                    } catch (BadLocationException | IOException exception) {
+                    	exception.printStackTrace();
                     }
                     windowNew.textArea.setText(open.OpenFunction(frame));
                 }
@@ -155,7 +159,7 @@ public class Window extends JFrame implements ActionListener {
     }
 
     @SuppressWarnings("unused")
-	public static void main(String args[]) throws BadLocationException {
+	public static void main(String args[]) throws BadLocationException, IOException {
         Window window = new Window();
     }
 }
