@@ -20,13 +20,12 @@ public class Window extends JFrame implements ActionListener {
 
     @SuppressWarnings("deprecation")
 	Window() throws BadLocationException, IOException {
-        String fileName = "Unnamed";
-        JFrame frame = new JFrame("J&J Pad | " + fileName);
+        frame = new JFrame("J&J Pad | Unnamed");
         frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
-        RSyntaxTextArea textArea = new RSyntaxTextArea(30, 60);
+        textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
-        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PROPERTIES_FILE);
         textArea.setText("");
 
         Config config = new Config();
@@ -108,8 +107,10 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Open":
                 Open open = new Open();
-                if (textArea.getText().trim().equals("")) {
-                    textArea.setText(open.OpenFunction(frame));
+                if (textArea.getText().equals("")) {
+                	String[] returnArray = open.OpenFunction(frame);
+                    textArea.setText(returnArray[1]);
+                    SetFrame("J&J Pad | " + returnArray[0]);
                 } else {
                     Window windowNew = null;
                     try {
@@ -117,12 +118,14 @@ public class Window extends JFrame implements ActionListener {
                     } catch (BadLocationException | IOException exception) {
                     	exception.printStackTrace();
                     }
-                    windowNew.textArea.setText(open.OpenFunction(frame));
+                	String[] returnArray = open.OpenFunction(frame);
+                    textArea.setText(returnArray[1]);
+                    SetFrame("J&J Pad | " + returnArray[0]);
                 }
                 break;
             case "Save":
                 Save save = new Save();
-                if (textArea.getText().trim().equals("")) {
+                if (textArea.getText() == null) {
                     save.SaveFunction("", frame);
                 } else {
                     save.SaveFunction(textArea.getText(), frame);
@@ -156,6 +159,51 @@ public class Window extends JFrame implements ActionListener {
             default:
                 System.out.println("Default output in switch; Error!! Somehow no item was selected. @ line 114");
         }
+    }
+    
+    void SetFrame(String name) {
+    	frame.setTitle(name);
+    	if (name.toLowerCase().endsWith(".class") || name.toLowerCase().endsWith(".java"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+    	  else if (name.toLowerCase().endsWith(".xml") || name.toLowerCase().endsWith(".rss")
+    	      || name.toLowerCase().endsWith(".project") || name.toLowerCase().endsWith(".classpath"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
+    	  else if (name.toLowerCase().endsWith(".h"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+    	  else if (name.toLowerCase().endsWith(".sql"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_SQL);
+    	  else if (name.toLowerCase().endsWith(".js"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT);
+    	  else if (name.toLowerCase().endsWith(".php") || name.toLowerCase().endsWith(".php5")
+    	      || name.toLowerCase().endsWith(".phtml"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PHP);
+    	  else if (name.toLowerCase().endsWith(".html") || name.toLowerCase().endsWith(".htm")
+    	      || name.toLowerCase().endsWith(".xhtm") || name.toLowerCase().endsWith(".xhtml"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_HTML);
+    	  else if (name.toLowerCase().endsWith(".js"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT);
+    	  else if (name.toLowerCase().endsWith(".lua"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_LUA);
+    	  else if (name.toLowerCase().endsWith(".bat"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_WINDOWS_BATCH);
+    	  else if (name.toLowerCase().endsWith(".pl"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PERL);
+    	  else if (name.toLowerCase().endsWith(".sh"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_UNIX_SHELL);
+    	  else if (name.toLowerCase().endsWith(".css"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CSS);
+    	  else if (name.toLowerCase().endsWith(".json"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JSON);
+    	  else if (name.toLowerCase().endsWith(".txt"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+    	  else if (name.toLowerCase().endsWith(".rb"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_RUBY);
+    	  else if (name.toLowerCase().endsWith(".make") || name.toLowerCase().endsWith(".mak"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_MAKEFILE);
+    	  else if (name.toLowerCase().endsWith(".py"))
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+    	  else
+    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PROPERTIES_FILE);
     }
 
     @SuppressWarnings("unused")
