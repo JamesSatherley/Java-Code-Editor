@@ -23,10 +23,14 @@ public class Window extends JFrame implements ActionListener {
         frame = new JFrame("J&J Pad | Unnamed");
         frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
+        
         textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
-        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PROPERTIES_FILE);
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
         textArea.setText("");
+		textArea.setAutoIndentEnabled(true);
+		textArea.setMarkOccurrences(true);
+		textArea.setTabSize(4);
 
         Config config = new Config();
         config.getPropValues();
