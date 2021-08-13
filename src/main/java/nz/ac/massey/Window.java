@@ -125,7 +125,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                if (textArea.getText() == null) {
+                if (textArea.getText().equals("")) {
                     save.SaveFunction("", frame);
                 } else {
                     save.SaveFunction(textArea.getText(), frame);
@@ -139,13 +139,13 @@ public class Window extends JFrame implements ActionListener {
                 //TODO
                 break;
             case "Cut":
-                //TODO
+                textArea.cut();
                 break;
             case "Copy":
-                //TODO
+                textArea.copy();
                 break;
             case "Paste":
-                //TODO
+                textArea.paste();
                 break;
             case "Insert Time and Date":
                 textArea.setText(LocalDateTime.now()+ "\n" + textArea.getText());
@@ -180,8 +180,6 @@ public class Window extends JFrame implements ActionListener {
     	  else if (name.toLowerCase().endsWith(".html") || name.toLowerCase().endsWith(".htm")
     	      || name.toLowerCase().endsWith(".xhtm") || name.toLowerCase().endsWith(".xhtml"))
     	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_HTML);
-    	  else if (name.toLowerCase().endsWith(".js"))
-    	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT);
     	  else if (name.toLowerCase().endsWith(".lua"))
     	    textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_LUA);
     	  else if (name.toLowerCase().endsWith(".bat"))

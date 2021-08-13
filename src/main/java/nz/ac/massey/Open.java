@@ -13,7 +13,9 @@ public class Open {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
         
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Supported, use all files for other", "txt", "class", "java", "xml", "rss", 
+        		".project", ".classpath", "h", "sql", "js", "php", "php5", "phtml", "html", "htm", "xhtm", "xhtml", "lua",
+        		"bat", "pl", "sh", "css", "json", "rb", "make", "mak", "py", "properties", "config");
         fileChooser.setFileFilter(filter);
 
         int response = fileChooser.showOpenDialog(null);
@@ -31,7 +33,6 @@ public class Open {
 
                     }
                 }
-                System.out.println(file.getName());
                 returnArray[0] = file.getName();
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
