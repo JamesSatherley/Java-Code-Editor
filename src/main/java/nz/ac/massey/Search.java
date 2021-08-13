@@ -1,10 +1,7 @@
 package nz.ac.massey;
 
 import javax.swing.*;
-
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-
-import java.awt.*;
 
 public class Search {
     RSyntaxTextArea SearchFunction(RSyntaxTextArea textArea) {

@@ -2,7 +2,6 @@ package nz.ac.massey;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

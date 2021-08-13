@@ -2,21 +2,21 @@ package nz.ac.massey;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.time.LocalDateTime;
-
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
-    private JFrame frame;
+	private static final long serialVersionUID = 1L;
+	private JFrame frame;
     private RSyntaxTextArea textArea;
 
-    Window() throws BadLocationException {
+    @SuppressWarnings("deprecation")
+	Window() throws BadLocationException {
         String fileName = "Unnamed";
         JFrame frame = new JFrame("J&J Pad | " + fileName);
         JMenuBar menuBar = new JMenuBar();
@@ -91,7 +91,8 @@ public class Window extends JFrame implements ActionListener {
         frame.show();
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "New":
@@ -153,7 +154,8 @@ public class Window extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String args[]) throws BadLocationException {
+    @SuppressWarnings("unused")
+	public static void main(String args[]) throws BadLocationException {
         Window window = new Window();
     }
 }
