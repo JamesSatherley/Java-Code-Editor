@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
@@ -152,7 +154,10 @@ public class Window extends JFrame implements ActionListener {
                 textArea.paste();
                 break;
             case "Insert Time and Date":
-                textArea.setText(LocalDateTime.now()+ "\n" + textArea.getText());
+            	DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            	DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+            	LocalDateTime now = LocalDateTime.now();
+                textArea.setText("Date: "+ date.format(now) + ", Time: " + time.format(now) + "\n" + textArea.getText());
                 break;
             case "Close All":
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
