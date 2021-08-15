@@ -125,7 +125,7 @@ public class Window extends JFrame implements ActionListener {
                     	exception.printStackTrace();
                     }
                 	String[] returnArray = open.OpenFunction(frame);
-                    textArea.setText(returnArray[1]);
+                    windowNew.textArea.setText(returnArray[1]);
                     SetFrame("J&J Pad | " + returnArray[0]);
                 }
                 break;
