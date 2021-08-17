@@ -134,11 +134,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                if (textArea.getText().equals("")) {
-                    save.SaveFunction("", frame);
-                } else {
-                    save.SaveFunction(textArea.getText(), frame);
-                }
+                save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText(), frame);
                 break;
             case "Search":
                 Search search = new Search();
@@ -146,19 +142,11 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Print as PDF":
                 PrintToPDF pdfPrinter = new PrintToPDF();
-                if(textArea.getText().equals("")) {
-                    pdfPrinter.print("");
-                } else {
-                    pdfPrinter.print(textArea.getText());
-                }
+                pdfPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
                 break;
             case "Print":
                 PrintToPrinter printer = new PrintToPrinter();
-                if(textArea.getText().equals("")) {
-                    printer.print("");
-                } else {
-                    printer.print(textArea.getText());
-                }                
+                printer.print(textArea.getText().equals("") ? "" : textArea.getText());                
             	break;
             case "Cut":
                 textArea.cut();
