@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
@@ -20,6 +21,7 @@ public class Window extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
     private RSyntaxTextArea textArea;
+    private String savedFile = "";
 
     @SuppressWarnings("deprecation")
 	Window() throws BadLocationException, IOException {
@@ -102,6 +104,21 @@ public class Window extends JFrame implements ActionListener {
         frame.add(scrollPane);
         frame.setSize(1000, 800);
         frame.show();
+        
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+            	if(!savedFile.equals(textArea.getText())) {
+                    int resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit without saving?", "Exit?", JOptionPane.YES_NO_OPTION);
+                    if (resp == JOptionPane.YES_OPTION) {
+                    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    } else {
+                        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    }
+            	} else {
+                	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            	}
+            }
+        });
     }
 
     @SuppressWarnings("unused")
@@ -136,6 +153,7 @@ public class Window extends JFrame implements ActionListener {
             case "Save":
                 Save save = new Save();
                 save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText(), frame);
+                savedFile = textArea.getText();
                 break;
             case "Search":
                 Search search = new Search();
