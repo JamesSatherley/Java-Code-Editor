@@ -150,9 +150,7 @@ public class Window extends JFrame implements ActionListener {
 					textArea.print();
 				} catch (PrinterException e1) {
 					e1.printStackTrace();
-				}
-                //PrintToPrinter printer = new PrintToPrinter();
-                //printer.print(textArea.getText().equals("") ? "" : textArea.getText());                
+				}            
             	break;
             case "Cut":
                 textArea.cut();
