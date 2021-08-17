@@ -3,6 +3,8 @@ package nz.ac.massey;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
+
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -68,10 +70,13 @@ public class Window extends JFrame implements ActionListener {
         JMenu viewMenu = new JMenu("View");
         JMenuItem viewMenuPrint = new JMenuItem("Print");
         JMenuItem viewMenuPrintAsPDF = new JMenuItem("Print as PDF");
+        JMenuItem viewMenuPrintCSOF = new JMenuItem("Change Size of Window");
         viewMenuPrint.addActionListener(this);
         viewMenuPrintAsPDF.addActionListener(this);
+        viewMenuPrintCSOF.addActionListener(this);
         viewMenu.add(viewMenuPrint);
         viewMenu.add(viewMenuPrintAsPDF);
+        viewMenu.add(viewMenuPrintCSOF);
 
         JMenu manageMenu = new JMenu("Manage");
         JMenuItem manageMenuCut = new JMenuItem("Cut");
@@ -162,6 +167,11 @@ public class Window extends JFrame implements ActionListener {
             case "Print as PDF":
                 PrintToPDF pdfPrinter = new PrintToPDF();
                 pdfPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
+                break;
+            case "Change Size of Window":
+                ChangeDims d = new ChangeDims();
+                int[] tempArray = ChangeDims.getNewDims(frame.getWidth(), frame.getHeight());
+                frame.setSize(new Dimension(tempArray[0], tempArray[1]));
                 break;
             case "Print":
 				try {
