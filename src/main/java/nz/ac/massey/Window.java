@@ -185,7 +185,7 @@ public class Window extends JFrame implements ActionListener {
                 textArea.setText("Date: "+ date.format(LocalDateTime.now()) + ", Time: " + time.format(LocalDateTime.now()) + "\n" + textArea.getText());
                 break;
             case "Close All":
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            	System.exit(0);
                 break;
             case "About":
                 JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
