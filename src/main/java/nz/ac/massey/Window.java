@@ -63,9 +63,12 @@ public class Window extends JFrame implements ActionListener {
         searchMenu.add(searchMenuSearch);
 
         JMenu viewMenu = new JMenu("View");
-        JMenuItem viewMenuItem = new JMenuItem("???");
-        viewMenuItem.addActionListener(this);
-        viewMenu.add(viewMenuItem);
+        JMenuItem viewMenuPrint = new JMenuItem("Print");
+        JMenuItem viewMenuPrintAsPDF = new JMenuItem("Print as PDF");
+        viewMenuPrint.addActionListener(this);
+        viewMenuPrintAsPDF.addActionListener(this);
+        viewMenu.add(viewMenuPrint);
+        viewMenu.add(viewMenuPrintAsPDF);
 
         JMenu manageMenu = new JMenu("Manage");
         JMenuItem manageMenuCut = new JMenuItem("Cut");
@@ -141,9 +144,17 @@ public class Window extends JFrame implements ActionListener {
                 Search search = new Search();
                 textArea = search.SearchFunction(textArea);
                 break;
-            case "???":
-                //TODO
+            case "Print as PDF":
+                PrintToPDF printer = new PrintToPDF();
+                if(textArea.getText().equals("")) {
+                    printer.print("");
+                } else {
+                    printer.print(textArea.getText());
+                }
                 break;
+            case "Print":
+                //TODO
+            	break;
             case "Cut":
                 textArea.cut();
                 break;
