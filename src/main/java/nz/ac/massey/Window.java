@@ -160,8 +160,7 @@ public class Window extends JFrame implements ActionListener {
             case "Insert Time and Date":
             	DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             	DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
-            	LocalDateTime now = LocalDateTime.now();
-                textArea.setText("Date: "+ date.format(now) + ", Time: " + time.format(now) + "\n" + textArea.getText());
+                textArea.setText("Date: "+ date.format(LocalDateTime.now()) + ", Time: " + time.format(LocalDateTime.now()) + "\n" + textArea.getText());
                 break;
             case "Close All":
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
