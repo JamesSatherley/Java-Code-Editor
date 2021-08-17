@@ -145,15 +145,20 @@ public class Window extends JFrame implements ActionListener {
                 textArea = search.SearchFunction(textArea);
                 break;
             case "Print as PDF":
-                PrintToPDF printer = new PrintToPDF();
+                PrintToPDF pdfPrinter = new PrintToPDF();
+                if(textArea.getText().equals("")) {
+                    pdfPrinter.print("");
+                } else {
+                    pdfPrinter.print(textArea.getText());
+                }
+                break;
+            case "Print":
+                PrintToPrinter printer = new PrintToPrinter();
                 if(textArea.getText().equals("")) {
                     printer.print("");
                 } else {
                     printer.print(textArea.getText());
-                }
-                break;
-            case "Print":
-                //TODO
+                }                
             	break;
             case "Cut":
                 textArea.cut();
