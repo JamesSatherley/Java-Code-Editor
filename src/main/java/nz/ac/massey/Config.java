@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Config {
     List<String> result = new ArrayList<>();
@@ -21,10 +23,8 @@ public class Config {
             if (file.isFile()) {
                 while (fileIn.hasNextLine()) {
                     String line = fileIn.nextLine();
-                    if (!line.contains("#")){
-                        if (!line.equals("")) {
-                            result.add(line.substring(line.indexOf("= ") + 2));
-                        }
+                    if (!line.contains("#") && !line.equals("")) {
+                        result.add(line.substring(line.indexOf("= ") + 2));
                     }
                 }
             }
@@ -38,11 +38,7 @@ public class Config {
     void convertToVariables() {
         for (String s:result) {
             String[] tempStringArray = s.replaceAll("\\s+","").split(",");
-            List<Integer> tempIntegerArray = new ArrayList<>();
-            tempIntegerArray.add(Integer.parseInt(tempStringArray[0]));
-            tempIntegerArray.add(Integer.parseInt(tempStringArray[1]));
-            tempIntegerArray.add(Integer.parseInt(tempStringArray[2]));
-            output.add(tempIntegerArray);
+            output.add(IntStream.range(0, 3).mapToObj(i -> Integer.parseInt(tempStringArray[i])).collect(Collectors.toList()));
         }
         Carot = new Color(output.get(0).get(0),output.get(0).get(1),output.get(0).get(2));
         Highlight = new Color(output.get(1).get(0),output.get(1).get(1),output.get(1).get(2));
