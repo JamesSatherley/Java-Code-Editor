@@ -6,6 +6,7 @@ import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -145,8 +146,13 @@ public class Window extends JFrame implements ActionListener {
                 pdfPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
                 break;
             case "Print":
-                PrintToPrinter printer = new PrintToPrinter();
-                printer.print(textArea.getText().equals("") ? "" : textArea.getText());                
+				try {
+					textArea.print();
+				} catch (PrinterException e1) {
+					e1.printStackTrace();
+				}
+                //PrintToPrinter printer = new PrintToPrinter();
+                //printer.print(textArea.getText().equals("") ? "" : textArea.getText());                
             	break;
             case "Cut":
                 textArea.cut();
