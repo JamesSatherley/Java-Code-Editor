@@ -60,18 +60,24 @@ public class Window extends JFrame implements ActionListener {
         JMenu submenu_exportAsMenu = new JMenu("Export As");
         JMenuItem exportPDF = new JMenuItem("Export as PDF");
         JMenuItem exportODT = new JMenuItem("Export as ODT");
+        JMenuItem exportRFT = new JMenuItem("Export as RFT");
         exportPDF.addActionListener(this);
         exportODT.addActionListener(this);
+        exportRFT.addActionListener(this);
         submenu_exportAsMenu.add(exportPDF);
         submenu_exportAsMenu.add(exportODT);
+        submenu_exportAsMenu.add(exportRFT);
 
         JMenu submenu_importAsMenu = new JMenu("Import As");
         JMenuItem importPDF = new JMenuItem("Import PDF");
         JMenuItem importODT = new JMenuItem("Import ODT");
+        JMenuItem importRFT = new JMenuItem("Import RFT");
         importPDF.addActionListener(this);
         importODT.addActionListener(this);
+        importRFT.addActionListener(this);
         submenu_importAsMenu.add(importPDF);
         submenu_importAsMenu.add(importODT);
+        submenu_importAsMenu.add(importRFT);
 
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuNew = new JMenuItem("New");
@@ -252,6 +258,9 @@ public class Window extends JFrame implements ActionListener {
                 PrintToODT odtPrinter = new PrintToODT();
                 odtPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
                 break;
+            case "Export as RFT":
+                PrintToRFT rftPrinter = new PrintToRFT();
+                break;
             case "Import PDF":
                 OpenPDF pdfOpener = new OpenPDF();
                 textArea.setText(pdfOpener.OpenFunction());
@@ -259,6 +268,9 @@ public class Window extends JFrame implements ActionListener {
             case "Import ODT":
                 OpenODT odtOpener = new OpenODT();
                 textArea.setText(odtOpener.OpenFunction());
+                break;
+            case "Import RFT":
+                OpenRFT rftOpener = new OpenRFT();
                 break;
             case "Change Size of Window":
                 ChangeDims d = new ChangeDims();
