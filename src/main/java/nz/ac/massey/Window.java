@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.List;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
@@ -24,6 +26,10 @@ public class Window extends JFrame implements ActionListener {
 	private JFrame frame;
     private RSyntaxTextArea textArea;
     private String savedFile = "";
+    private int index;
+    private JTextField searchField, replaceField;
+    private JButton searchForButton, searchNextButton, searchExitButton, searchReplaceAllButton;
+    private Search search;
 
     @SuppressWarnings("deprecation")
 	Window() throws BadLocationException, IOException {
@@ -98,10 +104,36 @@ public class Window extends JFrame implements ActionListener {
         helpMenu.add(helpMenuCloseAll);
         helpMenu.add(helpMenuAbout);
 
+        searchForButton = new JButton("Search for");
+        searchField = new JTextField();
+        searchNextButton = new JButton("Next");
+        replaceField = new JTextField();
+        searchReplaceAllButton = new JButton("Replace All");
+        searchExitButton = new JButton("Exit Search");
+
+        searchForButton.addActionListener(this);
+        searchNextButton.addActionListener(this);
+        searchReplaceAllButton.addActionListener(this);
+        searchExitButton.addActionListener(this);
+
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(viewMenu);
         menuBar.add(helpMenu);
+
+        menuBar.add(searchForButton);
+        menuBar.add(searchField);
+        menuBar.add(searchNextButton);
+        menuBar.add(replaceField);
+        menuBar.add(searchReplaceAllButton);
+        menuBar.add(searchExitButton);
+
+        searchField.setVisible(false);
+        replaceField.setVisible(false);
+        searchForButton.setVisible(false);
+        searchNextButton.setVisible(false);
+        searchReplaceAllButton.setVisible(false);
+        searchExitButton.setVisible(false);
 
         frame.setJMenuBar(menuBar);
         frame.add(scrollPane);
@@ -159,8 +191,43 @@ public class Window extends JFrame implements ActionListener {
                 savedFile = textArea.getText();
                 break;
             case "Find":
-                Search search = new Search();
-                textArea = search.SearchFunction(textArea);
+                searchField.setVisible(true);
+                replaceField.setVisible(true);
+                searchForButton.setVisible(true);
+                searchNextButton.setVisible(true);
+                searchReplaceAllButton.setVisible(true);
+                searchExitButton.setVisible(true);
+                break;
+            case "Search for":
+                search = new Search();
+                search.findIndexes(searchField.getText(), textArea.getText());
+                index = 1;
+                if (search.indexes.size() > 0) {
+                    textArea.select(search.indexes.get(0), search.indexes.get(0) + searchField.getText().length());
+                } else {
+                    JOptionPane.showMessageDialog(null, "No occurrences");
+                }
+                break;
+            case "Next":
+                if(index == search.indexes.size()) index = 0;
+                textArea.select(search.indexes.get(index), search.indexes.get(index) + searchField.getText().length());
+                index++;
+                break;
+            case "Replace All":
+                search = new Search();
+                search.findIndexes(searchField.getText(), textArea.getText());
+                Collections.reverse(search.indexes);
+                for (int n : search.indexes) {
+                    textArea.replaceRange(replaceField.getText(), n, n + searchField.getText().length());
+                }
+                break;
+            case "Exit Search":
+                searchField.setVisible(false);
+                replaceField.setVisible(false);
+                searchForButton.setVisible(false);
+                searchNextButton.setVisible(false);
+                searchReplaceAllButton.setVisible(false);
+                searchExitButton.setVisible(false);
                 break;
             case "Print as PDF":
                 PrintToPDF pdfPrinter = new PrintToPDF();
@@ -199,7 +266,7 @@ public class Window extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Hello! Devloped by James Gorman and James Satherley!");
                 break;
             default:
-                System.out.println("Default output in switch; Error!! Somehow no item was selected. @ line 114");
+                System.out.println("Default output in switch; Error!! Somehow no item was selected");
         }
     }
     

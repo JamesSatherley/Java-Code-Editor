@@ -3,17 +3,24 @@ package nz.ac.massey;
 import javax.swing.*;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 
-public class Search {
-    RSyntaxTextArea SearchFunction(RSyntaxTextArea textArea) {
-        String searchBox = (String)JOptionPane.showInputDialog("Search Text:");
-        final int l1 = textArea.getText().indexOf(searchBox);
-        final int l2 = searchBox.length();
+import java.util.ArrayList;
+import java.util.List;
 
-        if (l1 == -1) {
-            JOptionPane.showMessageDialog(null, "Search Value Not Found");
-        } else {
-            textArea.select(l1, l2+l1);
+public class Search {
+    List<Integer> indexes = new ArrayList<Integer>();
+
+    List<Integer> findIndexes(String word, String text){
+        word = word.toLowerCase();
+        text = text.toLowerCase();
+        int index = 0;
+
+        while (index != -1) {
+            index = text.indexOf(word, index);
+            if (index != -1) {
+                indexes.add(index);
+                index++;
+            }
         }
-        return textArea;
+        return indexes;
     }
 }
