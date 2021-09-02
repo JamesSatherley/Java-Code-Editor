@@ -57,6 +57,14 @@ public class Window extends JFrame implements ActionListener {
         scrollPane.getGutter().setBackground(config.GutterBackground);
         scrollPane.getGutter().setForeground(config.GutterForeground);
 
+        JMenu submenu_exportAsMenu = new JMenu("Export As");
+        JMenuItem exportPDF = new JMenuItem("Export as PDF");
+        JMenuItem exportODT = new JMenuItem("Export as ODT");
+        exportPDF.addActionListener(this);
+        exportODT.addActionListener(this);
+        submenu_exportAsMenu.add(exportPDF);
+        submenu_exportAsMenu.add(exportODT);
+
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuNew = new JMenuItem("New");
         JMenuItem fileMenuOpen = new JMenuItem("Open");
@@ -67,6 +75,7 @@ public class Window extends JFrame implements ActionListener {
         fileMenu.add(fileMenuNew);
         fileMenu.add(fileMenuOpen);
         fileMenu.add(fileMenuSave);
+        fileMenu.add(submenu_exportAsMenu);
 
         JMenu editMenu = new JMenu("Edit");
         JMenuItem editMenuCut = new JMenuItem("Cut");
@@ -87,13 +96,10 @@ public class Window extends JFrame implements ActionListener {
 
         JMenu viewMenu = new JMenu("View");
         JMenuItem viewMenuPrint = new JMenuItem("Print");
-        JMenuItem viewMenuPrintAsPDF = new JMenuItem("Print as PDF");
         JMenuItem viewMenuPrintCSOF = new JMenuItem("Change Size of Window");
         viewMenuPrint.addActionListener(this);
-        viewMenuPrintAsPDF.addActionListener(this);
         viewMenuPrintCSOF.addActionListener(this);
         viewMenu.add(viewMenuPrint);
-        viewMenu.add(viewMenuPrintAsPDF);
         viewMenu.add(viewMenuPrintCSOF);
         
         JMenu helpMenu = new JMenu("Help");
@@ -229,9 +235,13 @@ public class Window extends JFrame implements ActionListener {
                 searchReplaceAllButton.setVisible(false);
                 searchExitButton.setVisible(false);
                 break;
-            case "Print as PDF":
+            case "Export as PDF":
                 PrintToPDF pdfPrinter = new PrintToPDF();
                 pdfPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
+                break;
+            case "Export as ODT":
+                PrintToODT odtPrinter = new PrintToODT();
+                odtPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
                 break;
             case "Change Size of Window":
                 ChangeDims d = new ChangeDims();
