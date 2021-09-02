@@ -65,6 +65,14 @@ public class Window extends JFrame implements ActionListener {
         submenu_exportAsMenu.add(exportPDF);
         submenu_exportAsMenu.add(exportODT);
 
+        JMenu submenu_importAsMenu = new JMenu("Import As");
+        JMenuItem importPDF = new JMenuItem("Import PDF");
+        JMenuItem importODT = new JMenuItem("Import ODT");
+        importPDF.addActionListener(this);
+        importODT.addActionListener(this);
+        submenu_importAsMenu.add(importPDF);
+        submenu_importAsMenu.add(importODT);
+
         JMenu fileMenu = new JMenu("File");
         JMenuItem fileMenuNew = new JMenuItem("New");
         JMenuItem fileMenuOpen = new JMenuItem("Open");
@@ -76,6 +84,7 @@ public class Window extends JFrame implements ActionListener {
         fileMenu.add(fileMenuOpen);
         fileMenu.add(fileMenuSave);
         fileMenu.add(submenu_exportAsMenu);
+        fileMenu.add(submenu_importAsMenu);
 
         JMenu editMenu = new JMenu("Edit");
         JMenuItem editMenuCut = new JMenuItem("Cut");
@@ -176,7 +185,7 @@ public class Window extends JFrame implements ActionListener {
             case "Open":
                 Open open = new Open();
                 if (textArea.getText().equals("")) {
-                	String[] returnArray = open.OpenFunction(frame);
+                	String[] returnArray = open.OpenFunction();
                     textArea.setText(returnArray[1]);
                     SetFrame("J&J Pad | " + returnArray[0]);
                 } else {
@@ -186,7 +195,7 @@ public class Window extends JFrame implements ActionListener {
                     } catch (BadLocationException | IOException exception) {
                     	exception.printStackTrace();
                     }
-                	String[] returnArray = open.OpenFunction(frame);
+                	String[] returnArray = open.OpenFunction();
                     windowNew.textArea.setText(returnArray[1]);
                     SetFrame("J&J Pad | " + returnArray[0]);
                 }
@@ -242,6 +251,14 @@ public class Window extends JFrame implements ActionListener {
             case "Export as ODT":
                 PrintToODT odtPrinter = new PrintToODT();
                 odtPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
+                break;
+            case "Import PDF":
+                OpenPDF pdfOpener = new OpenPDF();
+                textArea.setText(pdfOpener.OpenFunction());
+                break;
+            case "Import ODT":
+                OpenODT odtOpener = new OpenODT();
+                textArea.setText(odtOpener.OpenFunction());
                 break;
             case "Change Size of Window":
                 ChangeDims d = new ChangeDims();

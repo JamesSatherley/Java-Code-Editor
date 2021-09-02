@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Open {
-    String[] OpenFunction(JFrame frame) {
+    String[] OpenFunction() {
         String[] returnArray = new String[2];
         String output = "";
         JFileChooser fileChooser = new JFileChooser();
