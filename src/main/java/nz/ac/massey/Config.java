@@ -16,7 +16,7 @@ public class Config {
 
     void getPropValues(){
 
-        File file = new File("config.properties");
+        File file = new File("config.yaml");
         Scanner fileIn = null;
         try {
             fileIn = new Scanner(file);

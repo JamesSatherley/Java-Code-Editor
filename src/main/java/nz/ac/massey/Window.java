@@ -62,10 +62,22 @@ public class Window extends JFrame implements ActionListener {
         fileMenu.add(fileMenuOpen);
         fileMenu.add(fileMenuSave);
 
-        JMenu searchMenu = new JMenu("Search");
-        JMenuItem searchMenuSearch = new JMenuItem("Search");
-        searchMenuSearch.addActionListener(this);
-        searchMenu.add(searchMenuSearch);
+        JMenu editMenu = new JMenu("Edit");
+        JMenuItem editMenuCut = new JMenuItem("Cut");
+        JMenuItem editMenuCopy = new JMenuItem("Copy");
+        JMenuItem editMenuPaste = new JMenuItem("Paste");
+        JMenuItem editMenuTimeDate = new JMenuItem("Insert Time and Date");
+        JMenuItem editMenuSearch = new JMenuItem("Find");
+        editMenuCut.addActionListener(this);
+        editMenuCopy.addActionListener(this);
+        editMenuPaste.addActionListener(this);
+        editMenuTimeDate.addActionListener(this);
+        editMenuSearch.addActionListener(this);
+        editMenu.add(editMenuCut);
+        editMenu.add(editMenuCopy);
+        editMenu.add(editMenuPaste);
+        editMenu.add(editMenuTimeDate);
+        editMenu.add(editMenuSearch);
 
         JMenu viewMenu = new JMenu("View");
         JMenuItem viewMenuPrint = new JMenuItem("Print");
@@ -77,20 +89,7 @@ public class Window extends JFrame implements ActionListener {
         viewMenu.add(viewMenuPrint);
         viewMenu.add(viewMenuPrintAsPDF);
         viewMenu.add(viewMenuPrintCSOF);
-
-        JMenu manageMenu = new JMenu("Manage");
-        JMenuItem manageMenuCut = new JMenuItem("Cut");
-        JMenuItem manageMenuCopy = new JMenuItem("Copy");
-        JMenuItem manageMenuPaste = new JMenuItem("Paste");
-        JMenuItem manageMenuTimeDate = new JMenuItem("Insert Time and Date");
-        manageMenuCut.addActionListener(this);
-        manageMenuCopy.addActionListener(this);
-        manageMenuPaste.addActionListener(this);
-        manageMenuTimeDate.addActionListener(this);
-        manageMenu.add(manageMenuCut);
-        manageMenu.add(manageMenuCopy);
-        manageMenu.add(manageMenuPaste);
-        manageMenu.add(manageMenuTimeDate);
+        
         JMenu helpMenu = new JMenu("Help");
         JMenuItem helpMenuCloseAll = new JMenuItem("Close All");
         JMenuItem helpMenuAbout = new JMenuItem("About");
@@ -100,9 +99,8 @@ public class Window extends JFrame implements ActionListener {
         helpMenu.add(helpMenuAbout);
 
         menuBar.add(fileMenu);
-        menuBar.add(searchMenu);
+        menuBar.add(editMenu);
         menuBar.add(viewMenu);
-        menuBar.add(manageMenu);
         menuBar.add(helpMenu);
 
         frame.setJMenuBar(menuBar);
@@ -160,7 +158,7 @@ public class Window extends JFrame implements ActionListener {
                 save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText(), frame);
                 savedFile = textArea.getText();
                 break;
-            case "Search":
+            case "Find":
                 Search search = new Search();
                 textArea = search.SearchFunction(textArea);
                 break;
