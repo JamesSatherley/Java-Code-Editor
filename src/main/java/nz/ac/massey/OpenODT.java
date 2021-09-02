@@ -14,8 +14,6 @@ import java.util.Scanner;
 
 public class OpenODT {
     String OpenFunction() {
-        String[] returnArray = new String[2];
-        String output = "";
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Supported, use all files for other", "odt");
