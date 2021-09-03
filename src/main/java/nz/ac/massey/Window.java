@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.*;
 import java.awt.print.PrinterException;
 import java.io.File;
@@ -184,7 +184,8 @@ public class Window extends JFrame implements ActionListener {
 
         frame.setJMenuBar(menuBar);
         frame.add(scrollPane);
-        frame.setSize(1000, 800);
+        frame.setSize(config.width, config.height);
+        textArea.setFont(new Font(config.fontName,  config.fontStyle, config.fontSize));
         frame.show();
         
         frame.addWindowListener(new WindowAdapter() {

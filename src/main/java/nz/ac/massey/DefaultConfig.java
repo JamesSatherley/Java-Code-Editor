@@ -17,7 +17,7 @@ public class DefaultConfig {
             "#\n" +
             "#\n" +
             "# All colours must be defined RGB values (0, 0, 0 would be black for example). These numbers are seperated into 3 3\n" +
-            "# digit numbers (000,000,000) but must be put together.\n" +
+            "# digit numbers (000,000,000) but must be put together. !!! If items error the file will be reset as a fail-safe !!!\n" +
             "#\n" +
             "\n" +
             "# Blinking bar in document\n" +
@@ -39,7 +39,19 @@ public class DefaultConfig {
             "Gutter-Background = 0, 36, 92\n" +
             "\n" +
             "# Line number text colour\n" +
-            "Gutter-Foreground = 50, 214, 214";
+            "Gutter-Foreground = 50, 214, 214\n" +
+            "\n" +
+            "# Default window size (formatted w,h)\n" +
+            "Window-Size = 1000, 800\n" +
+            "\n" +
+            "# Font Name\n" +
+            "Font = Dialog\n" +
+            "\n" +
+            "# Font Style\n" +
+            "Font-Style = 0\n" +
+            "\n" +
+            "# Font Size\n" +
+            "Font-Size = 12";
     public void createConfig(){
         Path path = Paths.get("config.yaml");
 

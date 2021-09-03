@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Config {
+    int fontStyle, fontSize, width, height;
+    String fontName;
     List<String> result = new ArrayList<>();
     List<List<Integer>> output = new ArrayList<>();
     Color Carot, Highlight, Background, Foreground, Line, GutterBackground, GutterForeground;
+    int NON_COLOUR_DATA = 4;
 
     void getPropValues(){
 
@@ -40,9 +43,15 @@ public class Config {
     }
 
     void convertToVariables() {
-        for (String s:result) {
-            String[] tempStringArray = s.replaceAll("\\s+","").split(",");
-            output.add(IntStream.range(0, 3).mapToObj(i -> Integer.parseInt(tempStringArray[i])).collect(Collectors.toList()));
+        for (int j = 0; j < result.size()-NON_COLOUR_DATA; j++) {
+            try {
+                String s = result.get(j);
+                String[] tempStringArray = s.replaceAll("\\s+", "").split(",");
+                output.add(IntStream.range(0, 3).mapToObj(i -> Integer.parseInt(tempStringArray[i])).collect(Collectors.toList()));
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
         }
         Carot = new Color(output.get(0).get(0),output.get(0).get(1),output.get(0).get(2));
         Highlight = new Color(output.get(1).get(0),output.get(1).get(1),output.get(1).get(2));
@@ -51,5 +60,14 @@ public class Config {
         Line = new Color(output.get(4).get(0),output.get(4).get(1),output.get(4).get(2));
         GutterBackground = new Color(output.get(5).get(0),output.get(5).get(1),output.get(5).get(2));
         GutterForeground = new Color(output.get(6).get(0),output.get(6).get(1),output.get(6).get(2));
+
+        String windowSize = result.get(result.size()-NON_COLOUR_DATA);
+        String[] tempWindowSizeArray = windowSize.replaceAll("\\s+", "").split(",");
+        width = Integer.parseInt(tempWindowSizeArray[0]);
+        height = Integer.parseInt(tempWindowSizeArray[1]);
+
+        fontName = result.get(result.size()-NON_COLOUR_DATA+1).replaceAll(" ", "");
+        fontStyle = Integer.parseInt(result.get(result.size()-NON_COLOUR_DATA+2).replaceAll(" ", ""));
+        fontSize = Integer.parseInt(result.get(result.size()-NON_COLOUR_DATA+3).replaceAll(" ", ""));
     }
 }

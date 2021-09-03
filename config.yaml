@@ -4,7 +4,7 @@
 #
 #
 # All colours must be defined RGB values (0, 0, 0 would be black for example). These numbers are seperated into 3 3
-# digit numbers (000,000,000) but must be put together.
+# digit numbers (000,000,000) but must be put together. !!! If items error the file will be reset as a fail-safe !!!
 #
 
 # Blinking bar in document
@@ -27,3 +27,15 @@ Gutter-Background = 0, 36, 92
 
 # Line number text colour
 Gutter-Foreground = 50, 214, 214
+
+# Default window size (formatted w,h)
+Window-Size = 1000, 800
+
+# Font Name
+Font = Dialog
+
+# Font Style
+Font-Style = 0
+
+# Font Size
+Font-Size = 12
