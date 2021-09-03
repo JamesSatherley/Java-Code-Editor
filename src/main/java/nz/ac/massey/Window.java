@@ -260,6 +260,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Export as RFT":
                 PrintToRFT rftPrinter = new PrintToRFT();
+                rftPrinter.print(textArea.getText().equals("") ? "" : textArea.getText());
                 break;
             case "Import PDF":
                 OpenPDF pdfOpener = new OpenPDF();
@@ -271,6 +272,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Import RFT":
                 OpenRFT rftOpener = new OpenRFT();
+                textArea.setText(rftOpener.OpenFunction());
                 break;
             case "Change Size of Window":
                 ChangeDims d = new ChangeDims();
