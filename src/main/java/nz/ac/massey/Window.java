@@ -5,10 +5,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +38,7 @@ public class Window extends JFrame implements ActionListener {
         frame = new JFrame("J&J Pad | Unnamed");
         frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -72,6 +69,9 @@ public class Window extends JFrame implements ActionListener {
         JMenuItem exportPDF = new JMenuItem("Export as PDF");
         JMenuItem exportODT = new JMenuItem("Export as ODT");
         JMenuItem exportRFT = new JMenuItem("Export as RFT");
+        exportPDF.setAccelerator(KeyStroke.getKeyStroke("control alt P"));
+        exportODT.setAccelerator(KeyStroke.getKeyStroke("control alt O"));
+        exportRFT.setAccelerator(KeyStroke.getKeyStroke("control alt R"));
         exportPDF.addActionListener(this);
         exportODT.addActionListener(this);
         exportRFT.addActionListener(this);
@@ -83,6 +83,9 @@ public class Window extends JFrame implements ActionListener {
         JMenuItem importPDF = new JMenuItem("Import PDF");
         JMenuItem importODT = new JMenuItem("Import ODT");
         JMenuItem importRFT = new JMenuItem("Import RFT");
+        importPDF.setAccelerator(KeyStroke.getKeyStroke("control shift P"));
+        importODT.setAccelerator(KeyStroke.getKeyStroke("control shift O"));
+        importRFT.setAccelerator(KeyStroke.getKeyStroke("control shift R"));
         importPDF.addActionListener(this);
         importODT.addActionListener(this);
         importRFT.addActionListener(this);
@@ -94,6 +97,9 @@ public class Window extends JFrame implements ActionListener {
         JMenuItem fileMenuNew = new JMenuItem("New");
         JMenuItem fileMenuOpen = new JMenuItem("Open");
         JMenuItem fileMenuSave = new JMenuItem("Save");
+        fileMenuNew.setAccelerator(KeyStroke.getKeyStroke("control N"));
+        fileMenuOpen.setAccelerator(KeyStroke.getKeyStroke("control O"));
+        fileMenuSave.setAccelerator(KeyStroke.getKeyStroke("control S"));
         fileMenuNew.addActionListener(this);
         fileMenuOpen.addActionListener(this);
         fileMenuSave.addActionListener(this);
@@ -109,6 +115,11 @@ public class Window extends JFrame implements ActionListener {
         JMenuItem editMenuPaste = new JMenuItem("Paste");
         JMenuItem editMenuTimeDate = new JMenuItem("Insert Time and Date");
         JMenuItem editMenuSearch = new JMenuItem("Find");
+        editMenuCut.setAccelerator(KeyStroke.getKeyStroke("control X"));
+        editMenuCopy.setAccelerator(KeyStroke.getKeyStroke("control C"));
+        editMenuPaste.setAccelerator(KeyStroke.getKeyStroke("control V"));
+        editMenuTimeDate.setAccelerator(KeyStroke.getKeyStroke("control T"));
+        editMenuSearch.setAccelerator(KeyStroke.getKeyStroke("control F"));
         editMenuCut.addActionListener(this);
         editMenuCopy.addActionListener(this);
         editMenuPaste.addActionListener(this);
@@ -123,6 +134,8 @@ public class Window extends JFrame implements ActionListener {
         JMenu viewMenu = new JMenu("View");
         JMenuItem viewMenuPrint = new JMenuItem("Print");
         JMenuItem viewMenuPrintCSOF = new JMenuItem("Change Size of Window");
+        viewMenuPrint.setAccelerator(KeyStroke.getKeyStroke("control P"));
+        viewMenuPrintCSOF.setAccelerator(KeyStroke.getKeyStroke("control W"));
         viewMenuPrint.addActionListener(this);
         viewMenuPrintCSOF.addActionListener(this);
         viewMenu.add(viewMenuPrint);
@@ -131,6 +144,8 @@ public class Window extends JFrame implements ActionListener {
         JMenu helpMenu = new JMenu("Help");
         JMenuItem helpMenuCloseAll = new JMenuItem("Close All");
         JMenuItem helpMenuAbout = new JMenuItem("About");
+        helpMenuCloseAll.setAccelerator(KeyStroke.getKeyStroke("control alt 1"));
+        helpMenuAbout.setAccelerator(KeyStroke.getKeyStroke("control I"));
         helpMenuCloseAll.addActionListener(this);
         helpMenuAbout.addActionListener(this);
         helpMenu.add(helpMenuCloseAll);
