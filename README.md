@@ -10,6 +10,6 @@
 ##### Run the jar file sent in or in the files. This will generate a config file which will allow you to change mainly cosmetic items in the text editor
 
 ### Significant Commit IDs
-##### James Satherley; 
-##### +8afffa37fefce9f494e724a723dc9ceae733ff50
+##### James Satherley: 
+##### + 8afffa37fefce9f494e724a723dc9ceae733ff50
 
