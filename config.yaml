@@ -3,7 +3,7 @@
 #    Developed by James Satherley & James Gorman
 #
 #
-# All colours must be defined RGB values (0, 0, 0 would be black for example). These numbers are seperated into 3 3
+# All colours must be defined RGB values (0, 0, 0 would be black for example, max numbers are (255, 255, 255). These numbers are seperated into 3 3
 # digit numbers (000,000,000) but must be put together. !!! If items error the file will be reset as a fail-safe !!!
 #
 

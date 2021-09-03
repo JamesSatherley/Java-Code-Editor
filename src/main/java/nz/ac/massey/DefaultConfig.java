@@ -16,7 +16,7 @@ public class DefaultConfig {
             "#    Developed by James Satherley & James Gorman\n" +
             "#\n" +
             "#\n" +
-            "# All colours must be defined RGB values (0, 0, 0 would be black for example). These numbers are seperated into 3 3\n" +
+            "# All colours must be defined RGB values (0, 0, 0 would be black for example, max numbers are (255, 255, 255). These numbers are seperated into 3 3\n" +
             "# digit numbers (000,000,000) but must be put together. !!! If items error the file will be reset as a fail-safe !!!\n" +
             "#\n" +
             "\n" +
@@ -60,7 +60,5 @@ public class DefaultConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        JOptionPane.showMessageDialog(null, "Welcome to J&J Pad! Default config generated");
     }
 }
