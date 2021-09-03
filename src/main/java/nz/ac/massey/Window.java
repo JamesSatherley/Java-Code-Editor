@@ -12,23 +12,28 @@ import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serial;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.List;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 1L;
-	private JFrame frame;
-    private RSyntaxTextArea textArea;
+	@Serial
+    private static final long serialVersionUID = 1L;
+	private final JFrame frame;
+    private final RSyntaxTextArea textArea;
     private String savedFile = "";
     private int index;
-    private JTextField searchField, replaceField;
-    private JButton searchForButton, searchNextButton, searchExitButton, searchReplaceAllButton;
+    private final JTextField searchField;
+    private final JTextField replaceField;
+    private final JButton searchForButton;
+    private final JButton searchNextButton;
+    private final JButton searchExitButton;
+    private final JButton searchReplaceAllButton;
     private Search search;
 
     @SuppressWarnings("deprecation")
@@ -37,6 +42,12 @@ public class Window extends JFrame implements ActionListener {
         frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
         
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
         textArea = new RSyntaxTextArea(30, 60);
         RTextScrollPane scrollPane = new RTextScrollPane(textArea);
         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
@@ -202,7 +213,9 @@ public class Window extends JFrame implements ActionListener {
                     	exception.printStackTrace();
                     }
                 	String[] returnArray = open.OpenFunction();
-                    windowNew.textArea.setText(returnArray[1]);
+                    if (windowNew != null) {
+                        windowNew.textArea.setText(returnArray[1]);
+                    }
                     SetFrame("J&J Pad | " + returnArray[0]);
                 }
                 break;
