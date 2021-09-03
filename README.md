@@ -1,3 +1,3 @@
-# javaAssignment
+# Java Assignment 1 (159.251)
 
-This is an assignment for a Massey University course that is based around creating your own text editor in groups of 2
+##### Created by [James Satherley](https://github.com/JamesSatherley) (19040618) and [James Gorman](https://github.com/james50777)(xxxxxxxx)
