@@ -8,6 +8,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Text;
 
 public class PrintToPDF {
 	public void print(String string) {
@@ -21,7 +22,9 @@ public class PrintToPDF {
                 PdfWriter writer = new PdfWriter(fileChooser.getSelectedFile().getAbsolutePath());
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
-                document.add(new Paragraph(string));
+                Text text = new Text(string);
+                text.setNextRenderer(new Overrider(text));
+                document.add(new Paragraph(text));
                 document.close(); 
             } catch (Exception e) {
                 e.printStackTrace();
