@@ -208,7 +208,8 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText(), frame);
+                save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText());
+                frame.setTitle(save.name);
                 savedFile = textArea.getText();
                 break;
             case "Find":

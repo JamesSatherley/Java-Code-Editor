@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class Save {
-    String name;
-    void SaveFunction(String s) {
+public class DefaultConfig {
+    public void createConfig(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
 
@@ -20,13 +19,11 @@ public class Save {
             file = new File(fileChooser.getSelectedFile().getAbsolutePath());
             try {
                 fileOut = new PrintWriter(file);
-                fileOut.println(s);
             } catch (FileNotFoundException el) {
                 el.printStackTrace();
 
             } finally {
                 fileOut.close();
-                name = "J&J Pad | " + file.getName();
             }
         }
     }
