@@ -29,9 +29,13 @@ public class Config {
                 }
             }
         } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
+            DefaultConfig dc = new DefaultConfig();
+            dc.createConfig();
+            getPropValues();
         } finally {
-            fileIn.close();
+            if (fileIn != null) {
+                fileIn.close();
+            }
         }
     }
 
