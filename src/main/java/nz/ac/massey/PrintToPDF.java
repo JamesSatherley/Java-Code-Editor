@@ -23,7 +23,7 @@ public class PrintToPDF {
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
                 Text text = new Text(string);
-                text.setNextRenderer(new Overrider(text));
+                text.setNextRenderer(new PDFSaveOverrider(text));
                 document.add(new Paragraph(text));
                 document.close(); 
             } catch (Exception e) {

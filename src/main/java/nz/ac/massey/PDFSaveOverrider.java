@@ -4,15 +4,15 @@ import com.itextpdf.layout.renderer.IRenderer;
 import com.itextpdf.layout.renderer.TextRenderer;
 import com.itextpdf.layout.element.Text;
 
-public class Overrider extends TextRenderer {
+public class PDFSaveOverrider extends TextRenderer {
 
-    public Overrider(Text textElement) {
+    public PDFSaveOverrider(Text textElement) {
         super(textElement);
     }
 
     @Override
     public IRenderer getNextRenderer() {
-        return new Overrider((Text) getModelElement());
+        return new PDFSaveOverrider((Text) getModelElement());
     }
 
     @Override
