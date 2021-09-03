@@ -218,7 +218,7 @@ public class Window extends JFrame implements ActionListener {
             case "Open":
                 Open open = new Open();
                 if (textArea.getText().equals("")) {
-                	String[] returnArray = open.OpenFunction();
+                	String[] returnArray = open.OpenFunction("ui");
                     textArea.setText(returnArray[1]);
                     SetFrame("J&J Pad | " + returnArray[0]);
                 } else {
@@ -228,7 +228,7 @@ public class Window extends JFrame implements ActionListener {
                     } catch (BadLocationException | IOException exception) {
                     	exception.printStackTrace();
                     }
-                	String[] returnArray = open.OpenFunction();
+                	String[] returnArray = open.OpenFunction("ui");
                     if (windowNew != null) {
                         windowNew.textArea.setText(returnArray[1]);
                     }
@@ -237,7 +237,7 @@ public class Window extends JFrame implements ActionListener {
                 break;
             case "Save":
                 Save save = new Save();
-                save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText());
+                save.SaveFunction(textArea.getText().equals("") ? "" : textArea.getText(), "ui");
                 frame.setTitle(save.name);
                 savedFile = textArea.getText();
                 break;
