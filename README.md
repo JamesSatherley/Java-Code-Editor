@@ -5,7 +5,7 @@ This is a custom made text and code editor in Java. This was made using Swing an
 
 
 ### Creators
-Created by [James Satherley](https://github.com/JamesSatherley) (19040618) and [James Gorman](https://github.com/james50777) (xxxxxxxx)
+Created by [James Satherley](https://github.com/JamesSatherley) (19040618) and [James Gorman](https://github.com/james50777) (20013573)
 
 
 ### How to run
