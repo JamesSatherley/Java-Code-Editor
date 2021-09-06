@@ -2,6 +2,6 @@
 /.settings/
 /.metadata/
 /.idea/
-.classpath.cp
-.project.p
+.classpath
+.project
 *.iml
