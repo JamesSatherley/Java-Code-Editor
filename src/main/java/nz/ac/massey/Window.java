@@ -9,7 +9,6 @@ import java.awt.event.*;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serial;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -19,8 +18,6 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class Window extends JFrame implements ActionListener {
-	@Serial
-    private static final long serialVersionUID = 1L;
 	private final JFrame frame;
     private final RSyntaxTextArea textArea;
     private String savedFile = "";
