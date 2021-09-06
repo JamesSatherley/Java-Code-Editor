@@ -4,6 +4,12 @@
 This is a custom made text and code editor in Java. This was made using Swing and a number of dependencies for importing and exporting as pdf, odt, and rft. It will automatically get the correct syntax colouring for an input file. There are hotkey for all main functions. The config file will allow you to edit a lot of features in the program like the font, font size, colour of different areas in rgb values, window size and more.
 
 
+### Marker, Read this!
++ Metrics report is in the reports folder
++ PMD proof is in reports also
++ This has been shared with Beagle1904 per Assignment Schedule
+
+
 ### Creators
 Created by [James Satherley](https://github.com/JamesSatherley) (19040618) and [James Gorman](https://github.com/james50777) (20013573)
 
