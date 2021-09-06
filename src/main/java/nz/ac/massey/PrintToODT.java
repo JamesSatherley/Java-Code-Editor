@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 
 public class PrintToODT {
     public void print(String string) {
+        // Using odftextdocument import saves to chosen file
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
 

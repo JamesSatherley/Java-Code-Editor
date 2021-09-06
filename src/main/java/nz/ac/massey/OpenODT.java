@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class OpenODT {
+    // Gets file from user using FileChooser and imports it using ODFtextdocument. This is using the odfdom which is a dependency. Removes xml data too due to how import works
     String OpenFunction() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));

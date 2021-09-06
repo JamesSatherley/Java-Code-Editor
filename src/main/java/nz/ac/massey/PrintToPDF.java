@@ -12,6 +12,7 @@ import com.itextpdf.layout.element.Text;
 
 public class PrintToPDF {
 	public void print(String string) {
+	    // exports to pdf using itextpdf dependency
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
 

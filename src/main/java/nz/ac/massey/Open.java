@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Open {
+    // Gets file from user using FileChooser and imports it using File which is the default open function. returns lines into a string
     String[] OpenFunction(String usage) {
         String[] returnArray = new String[2];
         String output = "";

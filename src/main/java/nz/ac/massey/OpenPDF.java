@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class OpenPDF {
+    // Gets file from user using FileChooser and imports it using pdfreader which is from the itext dependency. it then adds each line in a for loop and returns as a string
     String OpenFunction() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));

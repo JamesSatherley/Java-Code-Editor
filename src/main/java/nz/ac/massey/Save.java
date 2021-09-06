@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 public class Save {
     String name;
     void SaveFunction(String s, String usage) {
+        // Saves file using printwriter
         File file = null;
         PrintWriter fileOut = null;
     	

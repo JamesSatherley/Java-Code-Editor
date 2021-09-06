@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DefaultConfig {
+    // Generates config file if it doesn't exist
     String s = "#\n" +
             "#         Config file for J & J File editor\n" +
             "#    Developed by James Satherley & James Gorman\n" +

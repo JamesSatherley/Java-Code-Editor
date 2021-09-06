@@ -5,6 +5,7 @@ import com.itextpdf.layout.renderer.TextRenderer;
 import com.itextpdf.layout.element.Text;
 
 public class PDFSaveOverrider extends TextRenderer {
+    // overrides trimFirst to stop PDF trimming space to save code correctly
 
     public PDFSaveOverrider(Text textElement) {
         super(textElement);

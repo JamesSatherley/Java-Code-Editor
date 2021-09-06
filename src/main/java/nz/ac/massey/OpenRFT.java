@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class OpenRFT {
+    // Gets file from user using FileChooser and imports it using bufferedReader, adding line by line and returning as a string
     String OpenFunction () {
         String output = "";
         JFileChooser fileChooser = new JFileChooser();

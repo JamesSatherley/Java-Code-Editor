@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class ChangeDims {
 	public static int[] getNewDims(int i, int j) {
+		// gets inputs from user, checks if they're integers, if not asks user again, otherwise sends back to window
         String widthBox = (String)JOptionPane.showInputDialog("Enter width");
         String heightBox = (String)JOptionPane.showInputDialog("Enter height");
         try {

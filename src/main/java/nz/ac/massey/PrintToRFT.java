@@ -12,6 +12,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class PrintToRFT {
     public void print(String text){
+        // outputs file to selected place with outputstream
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
         byte data[] = text.getBytes();

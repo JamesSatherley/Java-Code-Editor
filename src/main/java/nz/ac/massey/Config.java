@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Config {
+    // Gets config file, finds settings and sets them to the class variables. Checks for no file and generates it. If file is broken it will close
     int fontStyle, fontSize, width, height;
     String fontName;
     List<String> result = new ArrayList<>();
