@@ -34,7 +34,6 @@ public class Window extends JFrame implements ActionListener {
 	Window() throws BadLocationException, IOException {
         // Defining the frame with a name and image, and defining a menu bar
         frame = new JFrame("J&J Pad | Unnamed");
-        frame.setIconImage(ImageIO.read(new File("icon.png")));
         JMenuBar menuBar = new JMenuBar();
 
         //Tries to set look and feel to default OS look and feel to look better on different os's
