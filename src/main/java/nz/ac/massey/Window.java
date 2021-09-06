@@ -425,7 +425,7 @@ public class Window extends JFrame implements ActionListener {
 
     // Creates window as psvm
     @SuppressWarnings("unused")
-	public static void main(String args[]) throws BadLocationException, IOException {
+	public static void main(String[] args) throws BadLocationException, IOException {
         Window window = new Window();
     }
 }
