@@ -8,6 +8,7 @@ This is a custom made text and code editor in Java. This was made using Swing an
 + Metrics report is in the reports folder
 + PMD proof is in reports also
 + This has been shared with Beagle1904 per Assignment Schedule
++ We were forced to remove the Logo from the app as it would not compile with it...
 
 
 ### Creators
