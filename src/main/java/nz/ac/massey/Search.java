@@ -1,8 +1,5 @@
 package nz.ac.massey;
 
-import javax.swing.*;
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-
 import java.util.ArrayList;
 import java.util.List;
 

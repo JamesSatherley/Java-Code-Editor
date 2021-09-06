@@ -1,7 +1,6 @@
 package nz.ac.massey;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

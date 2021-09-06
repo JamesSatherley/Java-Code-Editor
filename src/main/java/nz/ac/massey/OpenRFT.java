@@ -1,9 +1,6 @@
 package nz.ac.massey;
 
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.rtf.RTFEditorKit;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

@@ -9,8 +9,6 @@ import org.odftoolkit.odfdom.pkg.OdfElement;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class OpenODT {
     // Gets file from user using FileChooser and imports it using ODFtextdocument. This is using the odfdom which is a dependency. Removes xml data too due to how import works
